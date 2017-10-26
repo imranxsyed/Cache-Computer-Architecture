@@ -1,0 +1,21 @@
+Data structure:
+
+HASHTABLE<LinkedList>:
+-- For each set there is a corresponding index. The number of indexes equals to the number of sets. if it is a direct mapped Cache
+-- then it creates number of total blocks indexes
+-- the hashtable arrays is composed of linkedList where the number of blocks according to associativity is added to each index
+
+LinkedList:
+-- each linked list contains the following variables
+1) data: used to store the actual memory in binary format
+2) tag: used to store the actual tag bits in binary format
+3) next: to use the multiple blocks if needed
+
+
+
+The Ratio:
+
+The ratio seems to be fluctuating, thus it will be inaccurate to assume one to give better ratio than the other. In appears for small data Cache A seems to give better ration, and for enormous amount of data Cache B appears to give better ratio over all. However, still there are instances where Cache A gives better ration than Cache B on large amount of data, and Cach B gives better ration than Cache A on small amount of data.
+
+Reason:
+It is all about the memory size and indexing. since block off set are taken out first by both Cache A and Cache B. The only difference remains between them is the computation of their index numbers. Where Cache A  computes its on the right most n bits, and Cach B computes its index of the left most n bits. Thus their tags are obviously different. So the important thing to notice is the most memory addresses given are atleast 8 less than 48 bits, and those 8 bits are filled with 0s as a result. So for any block that ranges from 0-8 and number of sets that ranges from 0-8, will have an index of 0's, thus will always choose index 0 for Cache B since the indeices are computed from the left most n bits. I believe this causes disadvantage to the Cache B since many other indexes are left useless. I believe that is the reason why Cache B gives better ratio on larger amount of data rather than smaller amount of data.
